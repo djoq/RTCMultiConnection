@@ -244,8 +244,8 @@ document.getElementById('open-or-join').onclick = function() {
 
     var socket = connection.getSocket();
 
-    socket.emit('check-broadcast-presence', broadcastId, function(isBroadcastExists) {
-        if (!isBroadcastExists) {
+    socket.emit('check-broadcast-presence', broadcastId, function(BroadcastDoesExist) {
+        if (!BroadcastDoesExist) {
             // the first person (i.e. real-broadcaster) MUST set his user-id
             connection.userid = broadcastId;
         }
