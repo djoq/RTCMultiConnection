@@ -111,8 +111,7 @@ connection.connectSocket(function(socket) {
         console.log('rejoin-broadcast', broadcastId);
 
         connection.attachStreams = [];
-        socket.emit('check-broadcast-presence', broadcastId, function(isBroadcastExists) {
-            if (!isBroadcastExists) {
+        socket.emit('check-broadcast-presence', broadcastId, function(BroadcastDoesExist) {
                 // the first person (i.e. real-broadcaster) MUST set his user-id
                 connection.userid = broadcastId;
             }
@@ -390,8 +389,9 @@ if (broadcastId && broadcastId.length) {
 
     // auto-join-room
     (function reCheckRoomPresence() {
-        connection.checkPresence(broadcastId, function(isRoomExists) {
-            if (isRoomExists) {
+        connection.checkPresence(broadcastId, function(doesRoomExist) {
+           // iff room does exist?
+            if (doesRoomExist) {
                 document.getElementById('open-or-join').onclick();
                 return;
             }
